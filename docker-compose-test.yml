@@ -9,6 +9,8 @@ services:
          - 80
         environment:
             VIRTUAL_HOST: test.surfbattles.com
+            LETSENCRYPT_HOST: test.surfbattles.com 
+
 networks:
     default:
         external:

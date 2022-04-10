@@ -21,15 +21,30 @@ services:
         labels:
          - 'com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true'
 
+    nginx-proxy-letsencrypt:
+        image: 'jrcs/letsencrypt-nginx-proxy-companion'
+        container_name: 'nginx-proxy-letsencrypt'
+        environment:
+            DEFAULT_EMAIL: 'onlyorson@outlook.com'
+        depends_on:
+         - 'nginx-proxy'
+        volumes:
+         - nginx_certs:/etc/nginx/certs:rw
+         - nginx_vhost:/etc/nginx/vhost.d
+         - nginx_html:/usr/share/nginx/html
+         - /var/run/docker.sock:/var/run/docker.sock:ro
+         - acme_data:/etc/acme.sh
+
 networks:
-  default:
-    external:
-      name: nginx-proxy
+    default:
+        external:
+            name: nginx-proxy
 
 volumes:
-  nginx_certs:
-  nginx_vhost:
-  nginx_html:
-  nginx_dhparam:
-  nginx_config:
-  nginx_data:
+    nginx_certs:
+    nginx_vhost:
+    nginx_html:
+    nginx_dhparam:
+    nginx_config:
+    nginx_data:
+    acme_data:
