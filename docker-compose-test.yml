@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+    test-react:
+        image: index.docker.io/orsondc/surf-battles-react
+        container-name: 'test-react'
+        restart: always
+        expose:
+         - 80
+        environment:
+            VIRTUAL_HOST: test.surfbattles.com
+
