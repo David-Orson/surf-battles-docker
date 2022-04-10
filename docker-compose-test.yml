@@ -3,10 +3,22 @@ version: "3"
 services:
     test-react:
         image: index.docker.io/orsondc/surf-battles-react
-        container-name: 'test-react'
+        container_name: 'test-react'
         restart: always
         expose:
          - 80
         environment:
             VIRTUAL_HOST: test.surfbattles.com
+networks:
+    default:
+        external:
+            name: nginx-proxy
 
+volumes:
+    test_postgis_data:
+    test_geoserver_data:
+    test_video_data:
+    test_model_data:
+    test_babylon_data:
+    test_image_data:
+    test_geo_record_images_data:
